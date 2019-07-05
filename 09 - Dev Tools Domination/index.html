@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Console Tricks!</title>
+  </head>
+  <body>
+    <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+    <script>
+      const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+      function makeGreen() {
+        const p = document.querySelector('p');
+        p.style.color = '#BADA55';
+        p.style.fontSize = '50px';
+      }
+
+      /*--------------------------  Regular  --------------------------*/
+      console.log('Hello');
+
+      /*--------------------------  Interpolated  --------------------------*/
+      console.log('Hello %s', 'World');
+
+      // ES6 字串模板
+      let txt = 'JavaScript';
+      console.log(`Hello ${txt}`);
+
+      /*--------------------------  Styled  --------------------------*/
+      console.log('%c 住手!', 'font-size: 32px; color:#d6001c;');
+
+      /*--------------------------  warning!  --------------------------*/
+      console.warn('警告');
+
+      /*--------------------------  Error :|  --------------------------*/
+      console.error('錯誤!');
+      //
+      /*--------------------------  Info  --------------------------*/
+      console.info('資訊');
+
+      /*--------------------------  Testing  --------------------------*/
+      function guess(a, b) {
+        console.assert(a > b, '錯誤：' + a + ' 沒有比 ' + b + ' 大');
+      }
+      guess(10, 1);
+      guess(3, 10);
+
+      /*--------------------------  clearing  --------------------------*/
+      // console.clear() - 清除 console 內的文字，Windows快捷鍵 Ctrl + L
+
+      /*--------------------------  Viewing DOM Elements  --------------------------*/
+      const p = document.querySelector('p');
+      console.log(p);
+      console.dir(p);
+
+      /*--------------------------  Grouping together  --------------------------*/
+      console.groupCollapsed('訊息 Group');
+      console.log('內文1');
+      console.log('內文2');
+      console.log('內文3');
+      console.groupEnd('訊息 Group');
+
+      /*--------------------------  counting  --------------------------*/
+      console.count('JS'); // JS: 1
+      console.count('30'); // 30: 1
+      console.count('30'); // 30: 2
+      console.count('JS'); // JS: 2
+      console.count('30'); // 30: 3
+      console.count('JS'); // JS: 3
+      console.count('30'); // 30: 4
+
+      /*--------------------------  timing  --------------------------*/
+      console.time('花費時間');
+      fetch('https://api.github.com/users/wesbos')
+        .then(function(data) {
+          data.json();
+        })
+        .then(function(data) {
+          console.timeEnd('花費時間');
+        });
+    </script>
+  </body>
+</html>
