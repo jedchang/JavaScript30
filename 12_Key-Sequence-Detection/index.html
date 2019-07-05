@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>Key Detection</title>
     <!-- 引入外部 JS  -->
-    <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
+    <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
   </head>
   <style>
     * {
@@ -31,19 +31,29 @@
     </div>
 
     <script>
+      // 使用 keyCode 設定密碼。作者使用字串，但大小寫是會有差別的
+      // 插件網站也是用 KONAMI 當密碼，輸入一次後就會重複觸發，故不使用
+      // 密碼設定為 上, 下, 左, 右, B, A
       const secretCode = [38, 40, 37, 39, 66, 65];
+
+      // 宣告輸入值為空陣列
       const input = [];
 
+      // 偵聽整個頁面，滑鼠放開 (keyup) 才能執行，不去用滑鼠按下 (keydown) 因為一直觸發
       window.addEventListener('keyup', function(e) {
+        // console.log(e.key, e.keyCode);
         console.log(input);
 
-        input.push(e.keyCode);
+        input.push(e.keyCode); // 將輸入值 (keyCode) 推到空陣列中
+
+        // 重複觸發，當輸入的長度大於密碼長度
         while (input.length > secretCode.length) {
-          input.shift();
+          input.shift(); // 會移除並回傳陣列的第一個元素
         }
 
+        // 比對輸入資料是否與密碼一樣，使用 join() 將陣列轉為字串才能比對
         if (input.join() === secretCode.join()) {
-          cornify_add();
+          cornify_add(); // 呼叫外部 JS 中的 cornify_add() 函式，執行效果
         }
       });
     </script>
