@@ -99,29 +99,87 @@
       const endpoint =
         'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 
+      // fetch() 是使用 Promise 資料接收後才會跑 then() 內容 而 fetch() 是已經包裝好的 Promise
+
+      // fetch(endpoint).then(function(res) {
+      //   res.json().then(function(obj) {
+      //     console.log(obj);
+      //   });
+      // });
+
+      /**
+       *
+       * jQ 獲取 ajax
+       *
+       */
+
+      // 定義一個空陣列來接收 API
+      // var cities = [];
+
+      // $.ajax({
+      //   url: endpoint,
+      //   type: 'GET',
+      //   dataType: 'text',
+      //   success: function(res) {
+      //     console.log('成功');
+      //     cities = JSON.parse(res);
+      //   },
+      //   error: function() {
+      //     console.log('接收失敗!');
+      //   }
+      // });
+
+      /**
+       *
+       * Fetch API
+       *
+       */
+
+      // 注意是用 const 常數，不能變更
       const cities = [];
 
       fetch(endpoint)
+        // 第一個 then 使用 response.json() 來將資料轉成 json 格式
         .then(function(response) {
           return response.json();
         })
+        // 第二個 then 裡面的 data 才是真正的 json 物件，如果沒透過 then 基本上也只是個 Promise 物件而已
+        // 可以透過 blob()、json()、text() 轉成可用的資訊
         .then(function(data) {
+          // console.log(data);
+          // ES6 解構賦值，因為上面宣告陣列為常數(不能改變)，所以要將取得值在推回去原陣列
           cities.push(...data);
         });
 
       function displayMatches() {
+        // 宣告要輸入過濾文字的值 去頭尾空白
         let filterTxt = this.value.trim();
+
+        // 正規表達式 篩選過濾g(代表全部) i(代表不分大小寫)
         let regexp = new RegExp(filterTxt, 'gi');
+
+        // filter() 過濾陣列，place 自定義名稱
         let filterArray = cities.filter(function(place) {
+          // 回傳 match 符合搜索 city 的內容 或者 符合搜索 state 的內容
           return place.city.match(regexp) || place.state.match(regexp);
         });
+        // console.log(filterArray); // 搜尋內容逐步減少
 
+        // 針對每個陣列去產生 html 故使用map()
+        // map 會回傳 return 的值 功用上用來處理陣列回傳新值產生新陣列 留空的 return 會產生 undefined
         let html = filterArray
           .map(function(place) {
+            // 做出文字輸入時被 highlight 有底色效果 且用 replace() 來替換 regexp 內容
             let cityName = place.city.replace(regexp, `<span class="h1">${filterTxt}</span>`);
             let stateName = place.state.replace(regexp, `<span class="h1">${filterTxt}</span>`);
+
+            // 獲取的 place.population 為字串，要變成數字才能作千分位
+            // js 弱型別 (字串 * 1 = 會轉為數字)
             let populationNum = place.population * 1;
             console.log(typeof populationNum);
+
+            // 一定要 return 來組 html
+            // 後面數字也要新增千分位 可用 toLocaleString()
             return `
             <li>
               <span class="name">${cityName}, ${stateName}</span>
@@ -129,15 +187,18 @@
             </li>
           `;
           })
-          .join('');
+          .join(''); // 將陣列用空字串區隔
 
+        // 印出畫面
         suggestions.innerHTML = html;
       }
 
       let searchInput = document.querySelector('.search');
       let suggestions = document.querySelector('.suggestions');
 
+      // 鍵盤按下觸發
       searchInput.addEventListener('keyup', displayMatches);
+      // 改變後觸發
       searchInput.addEventListener('change', displayMatches);
     </script>
   </body>

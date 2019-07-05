@@ -221,6 +221,8 @@
     </div>
 
     <script>
+      // debounce 事件：來做等待、過濾事件，不希望連續觸發來降低重複事件的觸發
+      // 作者加入 debounce，但在快速捲動時會出現不觸發等情形，個人不愛...
       function debounce(func, wait = 20, immediate = true) {
         var timeout;
         return function() {
@@ -239,19 +241,30 @@
 
       let images = document.querySelectorAll('img');
 
+      // scroll 處理程序
       function scrollHandler() {
+        // console.log(window.scrollY);
+        // 捲軸垂直移動位置，可以取得元素離父層元素的距離，此時的父層元素為 <body> 透過這樣的方式可以取得元素頂點離網頁最上方的距離。
         let windowTop = window.scrollY;
+        //window.innerHeight 是指螢幕畫面的高度，要得到螢幕的下方位置是用 window.scrollY + window.innerHeight
         let windowBottom = windowTop + window.innerHeight;
 
+        // 對每一個 img 做事情
         images.forEach(img => {
+          // 圖片中間位置 = 圖片的頂部距離 + 圖片高的一半
           let imgMiddle = img.offsetTop + img.height / 2;
+          // 如果 圖片中間位置 < 視窗高度 而且 圖片中間位置 > 捲軸垂直移動位置
           if (imgMiddle < windowBottom && imgMiddle > windowTop) {
+            // img 加上 .active
             img.classList.add('active');
           } else {
             img.classList.remove('active');
           }
         });
       }
+
+      // 整個頁面偵聽 scroll 事件
+      // scroll 事件：連續觸發事件
       window.addEventListener('scroll', scrollHandler);
 
       // 使用 debounce

@@ -8,7 +8,7 @@
 
 ---
 
-介紹 Chrome Dev Tools 開發工具，各種 console 的用法
+介紹 Chrome Dev Tools 開發工具，各種 console 的用法。
 
 ## DOM BREAK ON
 

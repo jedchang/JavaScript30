@@ -17,9 +17,11 @@
       }
 
       /*--------------------------  Regular  --------------------------*/
+      // console.log() - 正規寫法，大家最常使用的，可以印出指定的字串或是變數
       console.log('Hello');
 
       /*--------------------------  Interpolated  --------------------------*/
+      // console.log('%s', value) - %s 會是一個變數，會帶入最後提供的值
       console.log('Hello %s', 'World');
 
       // ES6 字串模板
@@ -27,40 +29,50 @@
       console.log(`Hello ${txt}`);
 
       /*--------------------------  Styled  --------------------------*/
+      // console.log('%c', font-style) - 可以改變樣式的，開頭用 %c，之後就跟平常 css 一樣
       console.log('%c 住手!', 'font-size: 32px; color:#d6001c;');
 
       /*--------------------------  warning!  --------------------------*/
+      // console.warn() - 使用 warn 會跳出黃色警告
       console.warn('警告');
 
       /*--------------------------  Error :|  --------------------------*/
+      // console.error() - 使用 error 出現紅色的錯誤訊息
       console.error('錯誤!');
       //
       /*--------------------------  Info  --------------------------*/
+      // console.info() - chrome 改版似乎就取消了，原本會出現資訊圖示 (白字藍底圓的驚嘆號!)
       console.info('資訊');
 
       /*--------------------------  Testing  --------------------------*/
+      // console.assert() - 可用來測試判斷是否為真，若條件為 false 時，則回傳對應的錯誤訊息。
+
       function guess(a, b) {
         console.assert(a > b, '錯誤：' + a + ' 沒有比 ' + b + ' 大');
       }
-      guess(10, 1);
-      guess(3, 10);
+      guess(10, 1); // 不會秀出訊息
+      guess(3, 10); // 錯誤：3 沒有比 10 大
 
       /*--------------------------  clearing  --------------------------*/
       // console.clear() - 清除 console 內的文字，Windows快捷鍵 Ctrl + L
 
       /*--------------------------  Viewing DOM Elements  --------------------------*/
+      // console.dir() - 可顯示出物件的細節資料，如：DOM 元素、Function、prototype...
+      // log() 印出 dom 的元素; dir() 印出元素更細節的方法
       const p = document.querySelector('p');
       console.log(p);
       console.dir(p);
 
       /*--------------------------  Grouping together  --------------------------*/
-      console.groupCollapsed('訊息 Group');
+      // console.groupCollapsed() & console.groupEnd() - 把輸出資訊透過 group 包起來去做分類，閱讀上似乎會方便些。
+      console.groupCollapsed('訊息 Group'); // Group 開始
       console.log('內文1');
       console.log('內文2');
       console.log('內文3');
-      console.groupEnd('訊息 Group');
+      console.groupEnd('訊息 Group'); // Group 結束
 
       /*--------------------------  counting  --------------------------*/
+      //  console.count() - 可顯示累加出現的次數。去計算指定的字樣出現過幾次。
       console.count('JS'); // JS: 1
       console.count('30'); // 30: 1
       console.count('30'); // 30: 2
@@ -70,13 +82,14 @@
       console.count('30'); // 30: 4
 
       /*--------------------------  timing  --------------------------*/
+      // console.time() & console.timeEnd() - 用來計算程式碼執行時，共花了多少時間去完成。
       console.time('花費時間');
       fetch('https://api.github.com/users/wesbos')
         .then(function(data) {
           data.json();
         })
         .then(function(data) {
-          console.timeEnd('花費時間');
+          console.timeEnd('花費時間'); // 花費時間: 962.18798828125ms
         });
     </script>
   </body>

@@ -10,43 +10,67 @@
     <script>
       (function() {
         const canvas = document.querySelector('#draw');
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d'); // 宣告為 2D 渲染
+        // canvas 尺寸為螢幕的寬高
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
+        // 線條顏色
         ctx.strokeStyle = '#BADA55';
+        // 線條寬度
         ctx.lineWidth = 100;
+        // 線條結束、收尾樣式 (butt 短方形、round 圓形、square 長方形)
         ctx.lineCap = 'round';
+        // 線條連接、轉折樣式 (round 圓角、bevel 去斜角、、miter 尖形)
         ctx.lineJoin = 'round';
 
-        let isDrawing = false;
+        let isDrawing = false; // 宣告狀態切換，判斷是否執行繪製中：一開始無法繪製
         let lastX = 0;
         let lastY = 0;
-        let hue = 0;
-        let direction = true;
+        let hue = 0; // 設定 HSL 色相值
+        let direction = true; // 判斷粗細變化用
 
+        // 偵聽事件-滑鼠按下
         canvas.addEventListener('mousedown', e => {
           isDrawing = true;
+          // ES6 賦值，將 e 中的 offsetX 值賦於到最後位置 lastX 中
           [lastX, lastY] = [e.offsetX, e.offsetY];
+          // console.log(e.offsetX, e.offsetY);
         });
 
+        // HSL 色彩寫法 (色相角度但不加單位 0~360, 色彩飽和度 0~100%, 色彩亮度 0~100%)
+        // 順序為順時鐘旋轉 => 0 度為 R (紅)色，120 度為 G（綠）色，240 度為 B（藍）色
+        // 也就是 紅、橙、黃、綠、藍、靛、紫 順序
+
+        // 偵聽事件-滑鼠移動
         canvas.addEventListener('mousemove', e => {
+          // 判斷是否 isDrawing，!(drawing = false) 為 true，則 return 不觸發此 function
           if (!isDrawing) return;
+
+          // 設定線條顏色為 HSL 模式，ES6 字串模板帶入 hue 變數
           ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
-          ctx.beginPath();
-          ctx.moveTo(lastX, lastY);
-          ctx.lineTo(e.offsetX, e.offsetY);
-          ctx.stroke();
-          [lastX, lastY] = [e.offsetX, e.offsetY];
+          ctx.beginPath(); // 起始畫圖路徑
+          ctx.moveTo(lastX, lastY); // 將路徑指針移動到X、Y點
+          ctx.lineTo(e.offsetX, e.offsetY); // 將起始點與目前滑鼠位置 X、Y 連接起來
+          ctx.stroke(); // 將線條繪製出來
+          [lastX, lastY] = [e.offsetX, e.offsetY]; // 把結束最後位置放進 X、Y 變數中
+
+          // 繪製移動時變色效果，hue = 0 角度累加，就會依序出現紅、橙、黃、綠、藍、靛、紫
           hue++;
+          // console.log(hue++);
+          // 判斷顏色變化效果，色環一圈 360 度，超過就回到 0 度
           if (hue >= 360) {
             hue = 0;
           }
 
+          // 判斷線條寬度變化，當寬度到達設定大小，改變方向 (direction = true 或 false)
           if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+            // true、false 互相切換
             direction = !direction;
           }
 
+          // direction = true，線條加到 100
+          // direction = false，線條減到 1
           if (direction) {
             ctx.lineWidth++;
           } else {
@@ -54,7 +78,10 @@
           }
         });
 
+        // 偵聽事件-滑鼠放開，ES6 箭頭函式單行可省略 {}
         canvas.addEventListener('mouseup', () => (isDrawing = false));
+
+        // 偵聽事件-滑鼠離開 (mouseout、mouseleave 兩種此範例結果是一樣，因為 DOM 只有一層)
         canvas.addEventListener('mouseleave', () => (isDrawing = false));
       })();
     </script>

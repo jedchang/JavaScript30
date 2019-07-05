@@ -97,25 +97,37 @@
 
     <script>
       (function() {
+        // Array.from() 轉為真正陣列，以便後續使用陣列完整功能
         const checkboxes = Array.from(document.querySelectorAll('.inbox input[type="checkbox"]'));
+
+        // 作為上一個勾選後的紀錄使用，使用 null 空值
         let lastChecked = null;
 
+        // 點擊處發函式
         function clickHandler(e) {
           console.log(e);
+
+          // 首先判斷是否由無勾選
           if (this.checked) {
+            // 在判斷是否有按下 shiftKey (true or false)
+            // 並且 lastChecked 不能是空值，表示要有最後的點選才能成為一個範圍區間。lastCheck 若為 0，在 if 判斷中會等於 false，所以後面一定要設值 `!== null`
             if (e.shiftKey && lastChecked !== null) {
+              // 紀錄現在的 checkbox 勾選
               let nowChecked = checkboxes.indexOf(this);
+              // 較小的數值放前面 較大的數值放後面，將切出來範圍做 forEach，checked 有點選的為 true
               checkboxes.slice(Math.min(nowChecked, lastChecked), Math.max(nowChecked, lastChecked)).forEach(input => {
                 input.checked = true;
               });
             }
 
+            // 紀錄為第幾個 checkbox 勾選
             lastChecked = checkboxes.indexOf(this);
           } else {
             lastChecked = null;
           }
         }
 
+        // 用 forEach 將每一個 input 做點擊後的滑鼠偵聽事件
         checkboxes.forEach(input => {
           input.addEventListener('click', clickHandler);
         });

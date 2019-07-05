@@ -25,6 +25,15 @@
     <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500" />
 
     <style>
+      /**
+       *
+       * 原生 CSS 變數，但目前支援度不普及
+       * :root 等同於 html 選取器
+       * 變數命名方式 -- 
+       * 變數讀取方式 var
+       *
+       */
+
       :root {
         --base: #ffc600;
         --spacing: 10px;
@@ -65,15 +74,30 @@
 
     <script>
       (function() {
+        // 選取畫面所有 input (共計三個)
         const inputs = document.querySelectorAll('.controls input');
 
         function changeHandler() {
+          // this
+          // console.log(this.name, this.value);
+
+          // 利用 data-* 屬性判斷有無單位值 (px)，有就用單位沒有就空值
           const unit = this.dataset.sizing || '';
+
+          // 三者效果等同 document.querySelector('html'), document.querySelector(':root'), document.documentElement
+
+          // ES6 寫法
           document.documentElement.style.setProperty(`--${this.name}`, this.value + unit);
+
+          // ES5 寫法
+          // document.documentElement.style.setProperty('--' + this.name, this.value + unit);
         }
 
+        // forEach 每一個都執行，每次拿一個 input 去執行函式 (input 自定義名稱)
         inputs.forEach(function(input) {
+          // change 事件，只做在最後，如滑鼠放開才改變
           input.addEventListener('change', changeHandler);
+          // mousemove 事件，滑鼠移動過程中即改變
           input.addEventListener('mousemove', changeHandler);
         });
       })();

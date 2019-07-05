@@ -1,0 +1,141 @@
+$mainColor: #ffc600;
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.section {
+  background: url(../images/bg.jpg) center no-repeat fixed;
+  background-size: cover;
+  position: relative;
+}
+
+.container {
+  max-width: 1200px;
+  padding: 30px 0px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.header {
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.2);
+
+  h1 {
+    height: 558px;
+    background: url(../images/banner.jpg);
+    background-size: cover;
+    background-position: center;
+    text-indent: -9999px;
+  }
+
+  p {
+    padding: 20px;
+    font-size: 18px;
+    font-family: '微軟正黑體', 'Open Sans', sans-serif;
+    color: #333;
+    font-weight: 600;
+  }
+
+  .link-btn {
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    width: 400px;
+  }
+
+  .btn {
+    padding: 15px 35px;
+    background-color: #000;
+    color: $mainColor;
+    font-weight: 600;
+    font-family: '微軟正黑體', 'Open Sans', sans-serif;
+    transition: all 0.4s;
+    &:hover {
+      background-color: $mainColor;
+      color: #000;
+    }
+  }
+}
+
+.course-list {
+  list-style: none;
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.item {
+  width: calc(25% - 2rem);
+  margin-bottom: 50px;
+  background: #fff;
+  padding: 2rem;
+  list-style: none;
+  position: relative;
+  box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s;
+  &:hover {
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+    z-index: 2;
+  }
+
+  .i-image {
+    height: 150px;
+
+    img {
+      object-fit: cover;
+      width: calc(100% + 4rem);
+      margin-left: -2rem;
+      margin-top: -2rem;
+      height: 100%;
+    }
+  }
+
+  .i-title {
+    margin-bottom: 15px;
+    height: 50px;
+    text-transform: uppercase;
+    color: #333;
+  }
+
+  .i-number {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    top: 0;
+    left: 0;
+    line-height: 2rem;
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  .i-link {
+    padding: 20px 0px 15px 0px;
+    display: flex;
+    justify-content: space-around;
+
+    .btn {
+      padding: 10px 35px;
+      background-color: #4e4e4e;
+      color: #fff;
+      font-size: 14px;
+      transition: all 0.2s;
+
+      &:hover {
+        background-color: #0c0c0c;
+      }
+    }
+  }
+}

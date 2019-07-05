@@ -110,24 +110,50 @@
     </style>
 
     <script>
+      /**
+       *
+       * 時間計算：date
+       * 計時器：setInterval
+       *
+       */
+
       (function() {
+        // 設定時間函數 因時間不會再改變 所以可用const(常數)
         const second = document.querySelector('.second-hand');
         const min = document.querySelector('.min-hand');
         const hour = document.querySelector('.hour-hand');
 
         function setClock() {
+          // 取得目前時間
           let date = new Date();
 
+          // 分、秒：一圈 360 度，秒和分都是 60 秒/分，故分成 60 格，每格 6 度
+          // 時：一圈 360 度，總共 12 小時，故分成 12 格，每格 30度
+
           let secondDeg = date.getSeconds() * 6;
+          // 分不會剛好指向整數，會隨著秒鐘逐步前進
+          // 分隨著一圈 60 分中逐漸移動，加上秒鐘要 *6 度 / 60 秒
           let minDeg = date.getMinutes() * 6 + (date.getSeconds() * 6) / 60;
+          // 小時不會剛好指向整數，會隨著分鐘逐步前進
+          // 小時隨著一圈 60 分中逐漸移動，加上分鐘要 *30 度 / 60 分
           let hourDeg = date.getHours() * 30 + (date.getMinutes() * 30) / 60;
 
+          // ES6 反引號寫法 (IE不支援)
           second.style.transform = `rotate(${secondDeg}deg)`;
           min.style.transform = `rotate(${minDeg}deg)`;
           hour.style.transform = `rotate(${hourDeg}deg)`;
+
+          // ES5 傳統寫法
+          // second.style.transform = 'rotate(' + secondDeg +'deg)';
+          // min.style.transform = 'rotate(' + minDeg +'deg)';
+          // hour.style.transform = 'rotate(' + hourDeg +'deg)';
         }
 
+        // 初始化畫面
         setClock();
+
+        // 計時器 setInterval、setTimeout、requestAnimationFrame
+        // setInterval 設定間隔 持續執行
         setInterval(setClock, 1000);
       })();
     </script>
