@@ -6,13 +6,9 @@
 
 ## 主題
 
----
-
 使用 HTML5 Canvas 製作一個畫布，透過滑鼠來繪製色彩變化且粗細不一的線條。
 
 ## 步驟
-
----
 
 ### 1. 在 HTML 上建立 `canvas` 畫布區塊，設定 `2D` 環境，和變數 ctx 作為 canvas 操作元素，並設定相關屬性：
 
@@ -22,7 +18,8 @@
 - `lineJoin` 線條轉折樣式
 
 ### 2. 透過 JS 設定 canvas 會應用到的相關變數
-   - canvas 的顏色、線條粗細、座標位置、狀態切換、判斷粗細變化等
+
+- canvas 的顏色、線條粗細、座標位置、狀態切換、判斷粗細變化等
 
 ```js
 const canvas = document.querySelector('#draw');
@@ -40,15 +37,13 @@ let hue = 0; // 設定 HSL 色相值
 let direction = true; // 判斷粗細變化用
 ```
 
-3. 監聽滑鼠各個狀態事件 `addEventListener`
+1. 監聽滑鼠各個狀態事件 `addEventListener`
    - `mousedown`滑鼠按下：開始繪製
    - `mousemove`滑鼠移動：繪製移動過程
    - `mouseup`滑鼠放開：停止繪製
    - `mouseout、mouseleave`滑鼠離開：停止繪製
 
 ## 語法 & 備註
-
----
 
 ### direction = !direction
 

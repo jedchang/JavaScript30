@@ -8,11 +8,6 @@
   <body>
     <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
     <script>
-      // Get your shorts on - this is an array workout! (這是陣列相關練習!)
-      // ## Array Cardio Day 1
-
-      // Some data we can work with (可以使用的資料，共3組)
-
       const inventors = [
         { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
         { first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
@@ -76,54 +71,27 @@
       // Array.prototype.filter()
       // 1. Filter the list of inventors for those who were born in the 1500's (過濾出生於1500年代的發明者名單)
 
-      //過濾 會將結果為 true 的資料組成陣列回傳。inventor 為自定義名稱
-      let bornFilter = inventors.filter(function(inventor) {
-        return inventor.year >= 1500 && inventor.year < 1600;
-      });
-
-      // ES6 箭頭函式，單行沒有大括號{}，可省略 return
-      // let bornFilter = inventors.filter(inventor => inventor.year >= 1500 && inventor.year < 1600)
-
-      // clt 快速鍵
+      let bornFilter = inventors.filter(inventor => inventor.year >= 1500 && inventor.year < 1600);
       // console.table(bornFilter);
 
       /*--------------------------  WORKOUT-2  --------------------------*/
       // Array.prototype.map()
       // 2. Give us an array of the inventors' first and last names (組合一組發明者的名字和姓氏)
 
-      // 組合陣列
-      let fullName = inventors.map(function(inventor) {
-        return inventor.first + ' ' + inventor.last;
-      });
-
-      // ES6 箭頭函式
-      // let fullName = inventors.map(inventor => inventor.first + ' ' + inventor.last);
-
+      let fullName = inventors.map(inventor => inventor.first + ' ' + inventor.last);
       // console.table(fullName);
 
       /*--------------------------  WORKOUT-3  --------------------------*/
       // Array.prototype.sort()
       // 3. Sort the inventors by birthdate, oldest to youngest (按出生日期排序發明人，年齡最大到最小)
 
-      // sort() 排序， <0, =0, >0
-      let ordered = inventors.sort(function(a, b) {
-        if (a.year > b.year) {
-          return 1;
-        } else {
-          return -1;
-        }
-      });
-
-      // ES6 箭頭函式及三元運算子判斷
-      // let ordered = inventors.sort((a, b) => a.year > b.year ? 1 : -1);
-
+      let ordered = inventors.sort((a, b) => (a.year > b.year ? 1 : -1));
       // console.table(ordered);
 
       /*--------------------------  WORKOUT-4  --------------------------*/
       // Array.prototype.reduce()
       // 4. How many years did all the inventors live? (所有發明家們總共活了多少年？)
 
-      // reduce() 累加寫法
       let totalYears = inventors.reduce(function(total, inventor) {
         return total + inventor.passed - inventor.year;
       }, 0); //從 0 開始
@@ -133,66 +101,34 @@
       // 第三次執行：total = 0 + 76 + 84 (1727 - 1643), , inventor = { first: 'Galileo', last: 'Galilei', year: 1564, passed: 1642 },
       // 略...
 
-      // 另一個 forEach 寫法
-      let total = 0;
-      inventors.forEach(function(inv) {
-        total += inv.passed - inv.year;
-      });
-
       // console.log(totalYears);
 
       /*--------------------------  WORKOUT-5  --------------------------*/
       // 5. Sort the inventors by years lived (按存活的年數排序)
 
       let oldest = inventors.sort(function(a, b) {
-        // 比較 a 存活時間, b 存活時間, 然後排序
         return a.passed - a.year - (b.passed - b.year);
       });
-
       // console.table(oldest);
 
       /*--------------------------  WORKOUT-6  --------------------------*/
       // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name (列出 wiki 巴黎大道所有包含 'de' 的路名)
       // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
-      // querySelectorAll 取得的值是 NodeList (不是陣列，但很像陣列 Array-like)
-      // 想用陣列的方法需要利用 Array.from() 轉為陣列，才可以使用陣列提供的方法。
-
       let category = document.querySelector('.mw-category');
       let links = Array.from(category.querySelectorAll('a'));
-      let de = links
-        .map(function(link) {
-          //取得連結的文字
-          return link.textContent;
-        })
-        .filter(function(streetName) {
-          //過濾文字
-          return streetName.includes('de');
-        });
-
-      // ES6 寫法
-      // let category = document.querySelector('.mw-category');
-      // let links = Array.from(category.querySelectorAll('a'));
-      // let de = links.map(link => link.textContent).filter(streetName => streetName.includes('de'));
-
+      let de = links.map(link => link.textContent).filter(streetName => streetName.includes('de'));
       // console.log(de);
-      // 共有 12 個包含 de 路名
 
       /*--------------------------  WORKOUT-7  --------------------------*/
       // 7. sort Exercise
       // Sort the people alphabetically by last name (按姓氏字母 last name 順序排列人員)
 
-      // sort() 對人名排序，會使用到 split()方法
-      // 由於people的資料都是 ['Beck, Glenn’] 這樣的逗點字串，
-      // 要取得 lastName 就必須要使用 split()來切開
-
       let alpha = people.sort((a, b) => {
         let [aLast, aFirst] = a.split(', ');
         let [bLast, bFirst] = b.split(', ');
-
         return aLast > bLast ? 1 : -1;
       });
-
       // console.table(alpha);
 
       /*--------------------------  WORKOUT-8  --------------------------*/
@@ -216,16 +152,13 @@
       ];
 
       let transportation = data.reduce(function(obj, item) {
-        // 如果 obj 裡面沒有該項目，就設為 0
         if (!obj[item]) {
           obj[item] = 0;
         }
 
-        // obj 裡面的項目 +1
         obj[item] += 1;
         return obj;
-      }, {}); // {} 初始值為空物件累加
-
+      }, {});
       console.table(transportation);
     </script>
   </body>

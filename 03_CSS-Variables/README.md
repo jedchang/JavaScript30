@@ -6,13 +6,9 @@
 
 ## 主題
 
----
-
 使用**原生 CSS 變數功能**，透過 JS 更改 CSS 變數值，達到即時更新調整內距、模糊、邊框色等效果。
 
 ## 步驟
-
----
 
 ### 在 :root 宣告 CSS 變數：
 
@@ -25,8 +21,6 @@
 2. 透過 `document.documentElement.style.setProperty('--base', '#fff');` JS 控制來更改 CSS 的變數。
 
 ## 語法 & 備註
-
----
 
 ### :root 偽元素 (全域)
 

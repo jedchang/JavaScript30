@@ -6,13 +6,9 @@
 
 ## 主題
 
----
-
 畫面中輸入特定的密碼後，觸發對應的特效。
 
 ## 步驟
-
----
 
 ### 1. 設定
 
@@ -90,8 +86,6 @@ while (input.length > secretCode.length) {
 > 參閱 [Array.prototype.shift()](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/shift)
 
 ## 語法 & 備註
-
----
 
 ### push()
 

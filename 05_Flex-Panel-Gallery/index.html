@@ -142,52 +142,23 @@
     </div>
 
     <script>
-      /**
-       *
-       * flex 排版
-       * transition 兩段式動畫 第一段完成後執行 第二段動畫
-       * 偵聽 transitionend 動畫播放後
-       *
-       */
-
-      // querySelectorAll 取回的是 NodeList，很像陣列 (array-like)，但不具陣列的所有功能。
       let panels = document.querySelectorAll('.panel');
-
-      // clickHandler 事件處理函式
       function clickHandler() {
         this.classList.toggle('open');
       }
 
-      // transitionHandler 事件處理函式
       function transitionHandler(e) {
         console.log(e);
 
-        // 各家瀏覽器對於 transitionend 屬性名稱加上的 flex 不一樣
-        // chrome、firefox -> propertyName === flex-grow
-        // Safari -> propertyName === flex
-
-        // transitionend 會針對每一個屬性去觸發，如果有很多屬性記得做個簡易判斷
-        // 有雷，目前為2次屬性做動作 (1.開 2.關) 所以需要函式中的 if 判斷
-
-        // 主要針對 chrome、firefox，判斷查找文字 "flex" 找不到 (-1) 才執行，
         if (e.propertyName.indexOf('flex') !== -1) {
           this.classList.toggle('open-active');
         }
       }
 
-      // forEach 針對取回的每一個元件做偵聽，參數 panel 為自定義名稱
-      panels.forEach(function(panel) {
-        // callback function (回調函式) / Event Handler (處理事件)
+      panels.forEach(panel => {
         panel.addEventListener('click', clickHandler);
-        // transitionend 動畫結束後觸發事件 (第二段動畫)
         panel.addEventListener('transitionend', transitionHandler);
       });
-
-      // ES6 箭頭函式
-      // panels.forEach(panel => {
-      //   panel.addEventListener('click', clickHandler);
-      //   panel.addEventListener('transitionend', transitionHandler);
-      // });
     </script>
   </body>
 </html>

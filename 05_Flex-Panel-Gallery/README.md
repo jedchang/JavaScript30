@@ -6,13 +6,9 @@
 
 ## 主題
 
----
-
 運用 CSS Flex、transform、transition.. 等屬性與 JS 監聽事件 (click、transitionend)，達到點擊後會動畫展開的效果。
 
 ## 步驟
-
----
 
 1. CSS flex 排版。
 2. forEach 針對取回的每一個元件做偵聽。
@@ -20,8 +16,6 @@
 4. transitionend 事件，對每一個屬性去觸發，如果有很多屬性記得做個簡易判斷。
 
 ## 語法 & 備註
-
----
 
 ### css flex
 

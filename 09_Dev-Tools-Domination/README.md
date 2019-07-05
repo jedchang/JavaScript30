@@ -6,13 +6,9 @@
 
 ## 主題
 
----
-
 介紹 Chrome Dev Tools 開發工具，各種 console 的用法。
 
 ## DOM BREAK ON
-
----
 
 介紹 DOM 的中斷點模式，分別有三種觸發模式可選（可複選）
 
@@ -25,8 +21,6 @@
 ![](https://images2.imgbox.com/cd/11/5O1k0noV_o.jpg)
 
 ## CONSOLE
-
----
 
 ### console.log()
 

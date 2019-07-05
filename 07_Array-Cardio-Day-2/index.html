@@ -28,101 +28,41 @@
       // Array.prototype.some()
       // is at least one person 19 or older? (people 中是否有19歲以上的人?)
 
-      // some() 陣列比對：只要有一個元素是 true，就返回 true
-      // 傳統寫法
-      const isAdult = people.some(function(person) {
-        // 取得現在年分
-        const currentYear = new Date().getFullYear();
-        if (currentYear - person.year >= 19) {
-          return true;
-        }
-      });
-      // console.log(isAdult);
-
-      // ES6 寫法：箭頭涵式如果有大括號 {} 要補上 return
       const isAdultES6 = people.some(person => {
         return new Date().getFullYear() - person.year >= 19;
       });
-
       // console.log(isAdultES6);
 
       /*--------------------------  WORKOUT-2  --------------------------*/
       // Array.prototype.every()
       // is everyone 19 or older? (people 中是否每個人都19歲以上?)
 
-      // every() 陣列比對：所有元素都是 true 才是 true
-      // 傳統寫法
-      const allAdults = people.every(function(person) {
-        const nowYear = new Date().getFullYear();
-        if (nowYear - person.year >= 19) {
-          return true;
-        }
-      });
-
-      // console.log(allAdults);
-
-      // ES6 寫法：箭頭涵式如果有大括號 {} 要補上 return
       const allAdultsES6 = people.every(person => {
         return new Date().getFullYear() - person.year >= 19;
       });
-
       // console.log(allAdultsES6);
 
       /*--------------------------  WORKOUT-3  --------------------------*/
       // Array.prototype.find()
       // Find is like filter, but instead returns just the one you are looking for find the comment with the ID of 823423 (在 comments 資料中，找到 id：823423 的資料)
 
-      // find()：find 與 filter 很像，但 find 只會回傳一次值，且是第一次為 true 的值。
-      // 傳統寫法
-      const ansFind = comments.find(function(comments) {
-        // function 中 comments 為查找元件名稱，不是自定義名稱
-        if (comments.id === 823423) {
-          return true;
-        }
-      });
-
-      // console.log(ansFind);
-
-      // ES6 寫法：箭頭涵式如果有大括號 {} 要補上 return
       const ansFindES6 = comments.find(comments => {
         return comments.id === 823423;
       });
-
       // console.log(ansFindES6);
 
       /*--------------------------  WORKOUT-4  --------------------------*/
       // Array.prototype.findIndex()
       // Find the comment with this ID delete the comment with the ID of 823423 (在comments 資料中，找到 id:823423 的資料索引值，並透過索引值刪除這筆資料)
 
-      // findIndex()：函式也是尋找陣列中符合的元素，並返回其index (索引) 且第一個符合，找不到就返回 -1。
-      // 傳統寫法
-      const index = comments.findIndex(function(comments) {
-        if (comments.id === 823423) {
-          return true;
-        }
-      });
-      // console.log(index); // 1 為索引，陣列中的第二筆
-
-      // splice()：改變陣列內容，移除或新增元素。會修改原有的陣列。刪除的為索引 1，陣列中的第二筆
-      // comments.splice(index, 1);
-      // console.log(comments);
-
-      // ES6 寫法：箭頭涵式如果有大括號 {} 要補上 return
       const indexES6 = comments.findIndex(comments => {
         return comments.id === 823423;
       });
 
-      // slice()：取得範圍 (切割、擷取陣列)，但會產生新的陣列。
-      // ES6 展開運算子 => 可以把陣列中的元素取出
-
-      // 先展開陣列後 [...A, ...B] 並合併兩個陣列
-      // 然後切割取得範圍，0 索引開始到 indexES6 (id:823423)
-      // 在從 indexES6 (id:823423) 切割到最後， 索引為 (indexES6 + 1)
       const newComments = [...comments.slice(0, indexES6), ...comments.slice(indexES6 + 1)];
 
       console.log(newComments);
-
-      // console.log(indexES6); // 1 為索引，陣列中的第二筆
+      // console.log(indexES6);
     </script>
   </body>
 </html>
