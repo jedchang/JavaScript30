@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JS Reference VS Copy</title>
+  </head>
+  <body>
+    <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
+    <script>
+      // start with strings, numbers and booleans
+      // 從字串、數字和布林值開始
+
+      let age = 100;
+      let age2 = age;
+      console.log('age:' + age, 'age2:' + age2); // 100, 100
+      age = 200;
+      console.log('age:' + age, 'age2:' + age2); // 200, 100
+
+      /*
+          1. 先在電腦記憶體創造數值 100
+          2. 創造一個變數 age 並設定到電腦記憶體
+          3. 將變數 age 指向電腦記憶體內的 100
+          4. 電腦拷貝 age 的值，在電腦記憶體中設定另一個 100
+          5. 將變數 age2 指向電腦記憶體內另一個 100 =>（age2 = 100）
+          6. 在電腦記憶體創造數值 200
+          7. 將變數 age 指向電腦記憶體內的 200 =>（age = 200）
+      */
+
+      let numA = 100;
+      let numB = 100;
+      let numC = 100;
+      numB = 200;
+      numC = 300;
+      numA += numB; // numA = numA + numB
+      numA += numC; // numA = numA + numC
+
+      console.log('numA:' + numA, 'numB:' + numB, 'numC:' + numC); // 600, 300, 200
+
+      // Let's say we have an array
+      // 假設我們有一個陣列
+      const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+
+      // and we want to make a copy of it.
+      // 我們想要複製它
+      const team = players;
+      console.log('players:' + players, 'team:' + team);
+
+      // You might think we can just do something like this:
+      // 你可能認為我們可以做這樣的事情
+      team[3] = 'Max';
+
+      // however what happens when we update that array?
+      // 但是當我們更新那個陣列時會發生什麼事?
+
+      // now here is the problem!
+      // 現在這是問題所在
+
+      console.log('players:' + players, 'team:' + team);
+      // players: 'Wes', 'Sarah', 'Ryan', 'Max'
+      // team: 'Wes', 'Sarah', 'Ryan', 'Max'
+
+      // oh no - we have edited the original array too!
+      // 喔不 我們也編輯了原始陣列!
+
+      // Why? It's because that is an array reference, not an array copy. They both point to the same array!
+      // 為什麼？ 這是因為這是一個陣列(reference)，而不是陣列複製。它們都指向同一個陣列！
+
+      // So, how do we fix this? We take a copy instead!
+      // 那麼，我們該如何解決這個問題呢？ 我們拿一份副本！
+
+      // one way
+      // 方法一：使用 slice()，來產生一個新陣列來作複製
+      const players2 = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+      const team2 = players2.slice();
+      team2[3] = 'Max';
+
+      console.log('players2:' + players2, 'team2:' + team2);
+      // players2: 'Wes', 'Sarah', 'Ryan', 'Poppy'
+      // team2: 'Wes', 'Sarah', 'Ryan', 'Max'
+
+      // or create a new array and concat the old one in
+      // 方法二：使用 concat()，創建一個新陣列並將舊陣列連接起來
+      const players3 = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+      const team3 = [].concat(players3);
+      team3[3] = 'Max';
+
+      console.log('players3:' + players3, 'team3:' + team3);
+      // players3: 'Wes', 'Sarah', 'Ryan', 'Poppy'
+      // team3: 'Wes', 'Sarah', 'Ryan', 'Max'
+
+      // or use the new ES6 Spread
+      // 方法三：使用 ES6 展開運算子
+      const players4 = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+      const team4 = [...players4];
+      team4[3] = 'Max';
+
+      console.log('players4:' + players4, 'team4:' + team4);
+      // players4: 'Wes', 'Sarah', 'Ryan', 'Poppy'
+      // team4: 'Wes', 'Sarah', 'Ryan', 'Max'
+
+      // 補充 方法四：使用 ES6 Array.from() 也可以達到複製效果
+      const players5 = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+      const team5 = Array.from(players5);
+      team5[3] = 'Max';
+
+      console.log('players5:' + players5, 'team5:' + team5);
+      // players5: 'Wes', 'Sarah', 'Ryan', 'Poppy'
+      // team5: 'Wes', 'Sarah', 'Ryan', 'Max'
+
+      // now when we update it, the original one isn't changed
+      // 現在當我們更新它時，原來的不會改變
+
+      // The same thing goes for objects, let's say we have a person object
+      // 物件也是如此，假設我們有一個 person 物件
+
+      // with Objects
+      // 物件
+      const person = {
+        name: 'Wes Bos',
+        age: 80
+      };
+
+      // and think we make a copy:
+      // 並認為我們製作副本：
+      const captain = person;
+      captain.number = 99;
+
+      // how do we take a copy instead?
+      // 我們如何取代副本
+      const person2 = {
+        name: 'Wes Bos',
+        age: 80
+      };
+
+      const captain2 = Object.assign({}, person, {
+        name: 'Max',
+        number: 100,
+        age: 100
+      });
+      console.log(person2, captain2);
+      // person: {name: "Wes Bos", age: 80, number: 99}
+      // captain2: {name: "Max", age: 100, number: 100}
+
+      // We will hopefully soon see the object ...spread
+      // 我們很快就會看到這個物件 （...展開運算子）
+      const person3 = {
+        name: 'Wes Bos',
+        age: 80
+      };
+      const captain3 = { ...person3 };
+      captain3.name = 'Max';
+      captain3.age = '10';
+
+      console.log(person3, captain3);
+      // person3: {name: "Wes Bos", age: 80, number: 99}
+      // captain3: {name: "Max", age: 10, number: 100}
+
+      // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+      // 注意事項 - 這只有 1 級深度 - 對於陣列和物件。 lodash 有一個 cloneDeep 方法，但在使用之前你應該三思而後行。
+
+      const wes = {
+        name: 'Wes',
+        age: 100,
+        social: {
+          twitter: '@wesbos',
+          facebook: 'wesbos.developer'
+        }
+      };
+
+      // Object.assign() 屬於淺拷貝（Shallow Copy）
+      // 在多階層的 object 時會發現只有第一層修改時，不會相互影響到，但在第二層發現會相互影響。
+      // 所以 Object.assign 只能淺複製一層，若第二層以上依舊是 傳址(reference)
+      const dev = Object.assign({}, wes);
+      dev.name = 'Dev';
+      dev.social.twitter = '@dev';
+
+      // 因此使用 JSON.stringify() 的方式先將其轉換為字串，在使用 JSON.parse() 的方式將其轉回物件。這樣就屬於一個新的物件。達到可複製二層以上的物件。
+      const dev2 = JSON.parse(JSON.stringify(wes));
+      dev2.name = 'Dev2';
+      dev2.social.twitter = '@dev2';
+
+      console.log(wes, dev, dev2);
+      // wes:
+      // name: 'Wes',
+      // age: 100,
+      // social: {
+      //   twitter: '@dev',
+      //   facebook: 'wesbos.developer'
+      // }
+
+      // dev:
+      // name: 'Dev',
+      // age: 100,
+      // social: {
+      //   twitter: '@dev',
+      //   facebook: 'wesbos.developer'
+      // }
+
+      // dev2:
+      // name: 'Dev2',
+      // age: 100,
+      // social: {
+      //   twitter: '@dev2',
+      //   facebook: 'wesbos.developer'
+      // }
+    </script>
+  </body>
+</html>
