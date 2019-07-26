@@ -1,6 +1,6 @@
 # 12 - Key Sequence Detection
 
-![image](https://img.shields.io/badge/JavaScript30-exercise-brightgreen.svg)
+![image](https://img.shields.io/badge/JavaScript-exercise-F0DB4F.svg)
 
 ![](https://images2.imgbox.com/77/ca/HBxPVwK2_o.jpg)
 

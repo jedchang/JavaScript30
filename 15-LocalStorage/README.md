@@ -1,6 +1,6 @@
 # 15 - LocalStorage
 
-![image](https://img.shields.io/badge/JavaScript30-exercise-brightgreen.svg)
+![image](https://img.shields.io/badge/JavaScript-exercise-F0DB4F.svg)
 
 ![](https://images2.imgbox.com/7f/58/eW4mvN5v_o.jpg)
 

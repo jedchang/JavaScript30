@@ -1,6 +1,6 @@
 # 13 - Slide in on Scroll
 
-![image](https://img.shields.io/badge/JavaScript30-exercise-brightgreen.svg)
+![image](https://img.shields.io/badge/JavaScript-exercise-F0DB4F.svg)
 
 ![](https://images2.imgbox.com/0c/28/9Ep0DzhO_o.jpg)
 

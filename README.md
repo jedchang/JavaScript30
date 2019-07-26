@@ -1,6 +1,6 @@
 # JavaScript30
 
-![image](https://img.shields.io/badge/JavaScript30-exercise-brightgreen.svg)
+![image](https://img.shields.io/badge/JavaScript-exercise-F0DB4F.svg)
 
 ![](https://images2.imgbox.com/b5/5c/jHDElqnA_o.jpg)
 

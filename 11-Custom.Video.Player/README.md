@@ -1,6 +1,6 @@
 # 11 - Custom Video Player
 
-![image](https://img.shields.io/badge/JavaScript30-exercise-brightgreen.svg)
+![image](https://img.shields.io/badge/JavaScript-exercise-F0DB4F.svg)
 
 ![](https://images2.imgbox.com/7e/57/EPwC4Cvl_o.jpg)
 

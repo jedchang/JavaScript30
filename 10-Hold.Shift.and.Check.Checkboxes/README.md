@@ -1,6 +1,6 @@
 # 10 - Hold Shift and Check Checkboxes
 
-![image](https://img.shields.io/badge/JavaScript30-exercise-brightgreen.svg)
+![image](https://img.shields.io/badge/JavaScript-exercise-F0DB4F.svg)
 
 ![](https://images2.imgbox.com/33/16/utjrAE6c_o.jpg)
 

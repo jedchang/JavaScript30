@@ -1,6 +1,6 @@
 # 06 - Type Ahead
 
-![image](https://img.shields.io/badge/JavaScript30-exercise-brightgreen.svg)
+![image](https://img.shields.io/badge/JavaScript-exercise-F0DB4F.svg)
 
 ![](https://images2.imgbox.com/54/f0/U19Za1pQ_o.jpg)
 

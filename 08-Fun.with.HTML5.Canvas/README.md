@@ -1,6 +1,6 @@
 # 08 - Fun with HTML5 Canvas
 
-![image](https://img.shields.io/badge/JavaScript30-exercise-brightgreen.svg)
+![image](https://img.shields.io/badge/JavaScript-exercise-F0DB4F.svg) ![image](https://img.shields.io/badge/HTML5-exercise-E44D26.svg)
 
 ![](https://images2.imgbox.com/3e/af/mWbBlrrf_o.jpg)
 

@@ -1,6 +1,6 @@
 # 07 - Array Cardio Day 2
 
-![image](https://img.shields.io/badge/JavaScript30-exercise-brightgreen.svg)
+![image](https://img.shields.io/badge/JavaScript-exercise-F0DB4F.svg)
 
 ![](https://images2.imgbox.com/f1/e9/u2OW6yX8_o.jpg)
 

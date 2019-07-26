@@ -1,6 +1,6 @@
 # 01 - JavaScript Drum Kit
 
-![image](https://img.shields.io/badge/JavaScript30-exercise-brightgreen.svg)
+![image](https://img.shields.io/badge/JavaScript-exercise-F0DB4F.svg)
 
 ![](https://images2.imgbox.com/5b/d3/1gqCMN9Z_o.jpg)
 

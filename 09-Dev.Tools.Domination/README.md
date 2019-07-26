@@ -1,6 +1,6 @@
 # 09 - Dev Tools Domination
 
-![image](https://img.shields.io/badge/JavaScript30-exercise-brightgreen.svg)
+![image](https://img.shields.io/badge/JavaScript-exercise-F0DB4F.svg)
 
 ![](https://images2.imgbox.com/22/a0/HT8FOctz_o.jpg)
 

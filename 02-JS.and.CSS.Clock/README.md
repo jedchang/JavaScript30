@@ -1,6 +1,6 @@
 # 02 - JS and CSS Clock
 
-![image](https://img.shields.io/badge/JavaScript30-exercise-brightgreen.svg)
+![image](https://img.shields.io/badge/JavaScript-exercise-F0DB4F.svg) ![image](https://img.shields.io/badge/CSS-exercise-1572B6.svg)
 
 ![](https://images2.imgbox.com/5c/c1/g6PDwr6A_o.jpg)
 

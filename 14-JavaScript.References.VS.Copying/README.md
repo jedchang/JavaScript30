@@ -1,6 +1,6 @@
 # 14 - JavaScript References VS Copying
 
-![image](https://img.shields.io/badge/JavaScript30-exercise-brightgreen.svg)
+![image](https://img.shields.io/badge/JavaScript-exercise-F0DB4F.svg)
 
 ![](https://images2.imgbox.com/29/a1/1RZNCMkw_o.jpg)
 
