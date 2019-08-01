@@ -1,6 +1,6 @@
 # JavaScript30
 
-![image](https://img.shields.io/badge/JavaScript-exercise-F0DB4F.svg)
+![image](https://img.shields.io/badge/JavaScript30-exercise-brightgreen.svg)
 
 ![](https://images2.imgbox.com/b5/5c/jHDElqnA_o.jpg)
 
@@ -34,3 +34,4 @@ JS30 對於新手來說真的是不錯的練習，過程中學習到 JavaScript 
 | 14 - JavaScript References VS Copying      | 了解 JavaScript 中陣列與物件的傳址（Reference）與複製（Copying）                                                   | [DEMO](https://jedchang.github.io/JavaScript30/14-JavaScript.References.VS.Copying/index.html) | [GitHub](https://github.com/jedchang/JavaScript30/tree/master/14-JavaScript.References.VS.Copying) |
 | 15 - LocalStorage                          | 了解 LocalStorage 用法，並使用 LocalStorage 做資料增減動作完成練習。                                               |           [DEMO](https://jedchang.github.io/JavaScript30/15-LocalStorage/index.html)           | [GitHub](https://github.com/jedchang/JavaScript30/tree/master/15-LocalStorage)                     |
 | 16 - Mouse Move Shadow                     | 滑鼠移動時，讓文字陰影（textShadow）跟著移動的效果。並了解 ES6 的解構賦值的用法。                                  |        [DEMO](https://jedchang.github.io/JavaScript30/16-Mouse.Move.Shadow/index.html)         | [GitHub](https://github.com/jedchang/JavaScript30/tree/master/16-Mouse.Move.Shadow)                |
+| 17 - Sort Without Articles                 | 使用 sort 和 RegExp 方法，省略某些關鍵字後將陣列做排序。                                                           |      [DEMO](https://jedchang.github.io/JavaScript30/17-Sort.Without.Articles/index.html)       | [GitHub](https://github.com/jedchang/JavaScript30/tree/master/17-Sort.Without.Articles)            |
