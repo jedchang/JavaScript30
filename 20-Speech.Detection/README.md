@@ -12,7 +12,7 @@
 
 ### 1. 啟用 Local Server
 
-此練習需要使用 Local Server，除了安裝編輯器相關套件或是安裝 npm 套件 (browser-sync)，安裝完成後可以透過 `npm start` 來啟動 Local Server (預設 port:3000)
+此練習需要使用 Local Server，除了安裝編輯器相關套件或是安裝 npm 套件 (browser-sync)，安裝完成後可以透過 `npm start` or `npm run start` 來啟動 Local Server (預設 port:3000)
 
 ### 2. contenteditable 屬性
 
