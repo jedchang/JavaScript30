@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Speech Synthesis</title>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="voiceinator">
+      <h1>The Voiceinator 5000</h1>
+
+      <select name="voice" id="voices">
+        <option value="">Select A Voice</option>
+      </select>
+
+      <label for="rate">Rate:</label>
+      <input name="rate" type="range" min="0" max="3" value="1" step="0.1" />
+
+      <label for="pitch">Pitch:</label>
+      <input name="pitch" type="range" min="0" max="2" step="0.1" />
+
+      <textarea name="text">Hello! 現在正在練習 JS30 👍</textarea>
+      <button id="stop">Stop!</button>
+      <button id="speak">Speak</button>
+    </div>
+
+    <script>
+      // 建立語音的請求 new SpeechSynthesisUtterance()
+      const msg = new SpeechSynthesisUtterance();
+      // 語系清單空陣列
+      let voices = [];
+      // 語系下拉選單
+      const voicesDropdown = document.querySelector('[name="voice"]');
+      // 一併選取滑動、輸入框
+      const options = document.querySelectorAll('[type="range"], [name="text"]');
+
+      // 播放、停止按鈕
+      const speakButton = document.querySelector('#speak');
+      const stopButton = document.querySelector('#stop');
+
+      // 設定發音的文字內容
+      msg.text = document.querySelector('[name="text"]').value;
+
+      // 語系選單
+      function populateVoices() {
+        voices = this.getVoices();
+        console.log(voices);
+
+        // 將語系放進下拉選單
+        // 使用 filter 篩選出包含 zh、en 的語系
+        // 篩選後的 array 透過 map 把資料組成 html
+        // 用 join 來合併且消除原本陣列的逗點
+        voicesDropdown.innerHTML = voices
+          .filter(voice => {
+            return voice.lang.includes('zh') || voice.lang.includes('en');
+          })
+          .map(voice => {
+            return `<option value=${voice.name}>${voice.name} (${voice.lang})</option>`;
+          })
+          .join('');
+      }
+
+      // 播放聲音切換。參數這邊定一個判斷值
+      function toggle(starOver = true) {
+        speechSynthesis.cancel();
+        if (starOver) {
+          speechSynthesis.speak(msg);
+        }
+      }
+
+      // 設定發音語系
+      function setVoice() {
+        msg.voice = voices.find(voice => voice.name === this.value);
+        toggle();
+      }
+
+      // 設定速率跟音調
+      function setOption() {
+        // 傳入的變數名稱與 SpeechSynthesisUtterance 本身的物件相同
+        // 所以可以透過這種方式來直接用
+        msg[this.name] = this.value;
+        toggle();
+      }
+
+      // 監聽語音清單變更後語系
+      speechSynthesis.addEventListener('voiceschanged', populateVoices);
+      // 監聽語系清單 選擇後切換語系
+      voicesDropdown.addEventListener('change', setVoice);
+      // 監聽速率跟音調
+      options.forEach(option => option.addEventListener('change', setOption));
+
+      // 播放
+      speakButton.addEventListener('click', toggle);
+      // 停止。toggle 內的參數為 false
+      stopButton.addEventListener('click', () => toggle(false));
+    </script>
+  </body>
+</html>
