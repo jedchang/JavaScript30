@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Understanding JavaScript's Capture</title>
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+
+      div {
+        width: 100%;
+        padding: 100px;
+      }
+
+      .one {
+        background: thistle;
+      }
+
+      .two {
+        background: mistyrose;
+      }
+
+      .three {
+        background: coral;
+      }
+    </style>
+  </head>
+  <body class="bod">
+    <div class="box">
+      <div class="one purple">
+        <div class="two pink">
+          <div class="three orange"></div>
+        </div>
+      </div>
+    </div>
+    <button>CLICK</button>
+
+    <ul>
+      <li><a href="javascript:;">BUTTON 1</a></li>
+      <li><a href="javascript:;">BUTTON 2</a></li>
+      <li><a href="javascript:;">BUTTON 3</a></li>
+    </ul>
+
+    <script>
+      const divs = document.querySelectorAll('div');
+      const button = document.querySelector('button');
+
+      const btnAll = document.querySelector('.btn-all');
+
+      // logText 函式
+      function logText(e) {
+        // 印出當前 div 的 class name
+        console.log(this.classList.value);
+
+        // 停止冒泡行為！
+        // e.stopPropagation();
+      }
+
+      // 第三個參數 useCapture：預設為 false。為事件冒泡 (Bubbling)
+      divs.forEach(div => div.addEventListener('click', logText));
+
+      // 改成 options 寫法，capture: true => 表示捕獲模式。 once: true => 只觸發一次
+      // divs.forEach(div => div.addEventListener('click', logText, { capture: true, once: true }));
+
+      function btnAllHandler(e) {
+        console.log(e.target);
+      }
+
+      btnAll.addEventListener('click', btnAllHandler, { capture: false, passive: false });
+    </script>
+  </body>
+</html>
