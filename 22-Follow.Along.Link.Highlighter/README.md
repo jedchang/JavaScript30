@@ -48,6 +48,8 @@ triggers.forEach(a => {
 });
 ```
 
+> 參閱 [Element.getBoundingClientRect()](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect)
+
 #### highlight 似乎會跑版
 
 有個小問題，當滾動捲軸時 highlight 的效果會跑掉，這是因為當畫面載入時元素的位置。
