@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Video Speed Scrubber</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <video
+        class="flex"
+        width="765"
+        height="430"
+        src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4"
+        loop
+        controls
+      ></video>
+      <div class="speed">
+        <div class="speed-bar">1×</div>
+      </div>
+    </div>
+
+    <script>
+      const speed = document.querySelector('.speed');
+      const bar = document.querySelector('.speed-bar');
+      const video = document.querySelector('.flex');
+
+      // 滑鼠移動事件
+      function moveHandler(e) {
+        // 滑鼠與調節器原點距離
+        // 滑鼠位於整頁頂端的 Y 軸定位 - div.speed 到整頁頂端的距離
+        const y = e.pageY - this.offsetTop;
+
+        // 進度條所佔的比例 (Y / div.speed 的高度)
+        const percent = y / this.offsetHeight;
+        // console.log(percent);
+
+        // 將比例轉成百分比 用 Math.round 來計算取得四捨五入的百分比值
+        const height = Math.round(percent * 100) + '%';
+        console.log(height);
+
+        // 將調節器高度寫入
+        bar.style.height = height;
+
+        // 最小值、 最大值
+        const min = 0.4;
+        const max = 4;
+
+        // 取得播放速率
+        const playbackRate = percent * (max - min) + min;
+        console.log(playbackRate);
+
+        // 用 toFixed(2) 來設定最多取得小數點後兩位，顯示於 speed-bar 上
+        bar.textContent = playbackRate.toFixed(2) + 'x';
+        // 控制影片速率
+        video.playbackRate = playbackRate;
+      }
+
+      // 監聽滑鼠事件
+      speed.addEventListener('mousemove', moveHandler);
+    </script>
+  </body>
+</html>
