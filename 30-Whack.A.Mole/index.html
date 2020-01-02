@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Whack A Mole!</title>
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Whack-a-mole! <span class="score">0</span></h1>
+    <!-- 開始按鈕 -->
+    <button onClick="startGame()">Start!</button>
+
+    <div class="game">
+      <div class="hole hole1">
+        <div class="mole"></div>
+      </div>
+      <div class="hole hole2">
+        <div class="mole"></div>
+      </div>
+      <div class="hole hole3">
+        <div class="mole"></div>
+      </div>
+      <div class="hole hole4">
+        <div class="mole"></div>
+      </div>
+      <div class="hole hole5">
+        <div class="mole"></div>
+      </div>
+      <div class="hole hole6">
+        <div class="mole"></div>
+      </div>
+    </div>
+
+    <script>
+      const holes = document.querySelectorAll('.hole');
+      const scoreBoard = document.querySelector('.score');
+      const moles = document.querySelectorAll('.mole');
+
+      /*----------  預設變數設定  ----------*/
+      let lastHole; // 最後一次出現的地鼠洞
+      let timeUp = false; // 判斷遊戲時間是否結束
+      let score = 0; // 分數
+
+      /*----------  地鼠出現隨機的洞  ----------*/
+      // 將 DOM 的 holes 數量傳入
+      function randomHole(holes) {
+        // 取得地鼠洞數量區間內隨機的一個洞
+        const idx = Math.floor(Math.random() * holes.length);
+        const hole = holes[idx];
+
+        // 避免隨機出現相同的洞，若是與最後一次相同，則重新取得
+        if (hole === lastHole) {
+          console.log('這是重複的洞');
+          return randomHole(holes);
+        }
+
+        // 記錄最後一個出現的地鼠洞
+        lastHole = hole;
+        return hole;
+      }
+      // console.log(randomHole(holes));
+
+      /*----------  地鼠出現停留時間  ----------*/
+      function randomTime(max, min) {
+        // 傳入最小值、最大值，回傳一個區間範圍亂數
+        return Math.floor(Math.random() * (max - min) + min);
+      }
+
+      /*----------  地鼠出現  ----------*/
+      function peep() {
+        // 取得地鼠出現停留時間，這邊傳入 500 ~ 1000 毫秒，也就是 0.5 ~ 1 秒
+        const time = randomTime(500, 1000);
+        // 取得地鼠出現隨機的洞
+        const hole = randomHole(holes);
+        // 新增 class (地鼠出現)
+        hole.classList.add('up');
+
+        // 出現停留時間到的時候移除 class，且若遊戲時間未結束就繼續做
+        setTimeout(() => {
+          // 移除 class (地鼠消失)
+          hole.classList.remove('up');
+          // 判斷是否結束遊戲
+          if (!timeUp) peep();
+        }, time);
+      }
+
+      /*----------  敲打地鼠  ----------*/
+      function bonk(e) {
+        // e.isTrusted
+        // 若事件物件是由「使用者操作」而產生，isTrusted 值為 true
+        // 若事件物件是由程式碼所建立、修改，或是透過 EventTarget.dispatchEvent() 來觸發，則 isTrusted 值為 false。
+
+        // isTrusted 防止腳本操作
+        if (!e.isTrusted) {
+          console.log(e.isTrusted);
+          return;
+        }
+
+        // 加一分
+        score++;
+        // 打到就移除 class(地鼠消失)
+        this.parentNode.classList.remove('up');
+        // 更新畫面分數
+        scoreBoard.textContent = score;
+      }
+
+      /*----------  開始遊戲  ----------*/
+      function startGame() {
+        // 時間重置
+        timeUp = false;
+        // 分數歸零
+        scoreBoard.textContent = 0;
+        score = 0;
+
+        // 執行地鼠出現函示
+        peep();
+        // 設定 10 秒後結束時間
+        setTimeout(() => {
+          timeUp = true;
+          alert('Time is up!!');
+        }, 10000);
+      }
+
+      // 每隻地鼠做事件偵聽 (打地鼠 bonk)
+      moles.forEach(mole => mole.addEventListener('click', bonk));
+    </script>
+  </body>
+</html>
