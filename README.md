@@ -2,7 +2,9 @@
 
 ![image](https://img.shields.io/badge/JavaScript30-exercise-brightgreen.svg)
 
-![](https://images2.imgbox.com/b5/5c/jHDElqnA_o.jpg)
+![](https://raw.githubusercontent.com/jedchang/JavaScript30/refs/heads/master/preview.jpg)
+
+<!-- ![](https://github.com/jedchang/JavaScript30/blob/master/preview.jpg) -->
 
 ## 介紹
 
